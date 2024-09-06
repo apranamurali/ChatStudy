@@ -78,48 +78,36 @@ REG.NO :212223220008
 
 ## PROGRAM     
 ## CLIENT:    
-```
-import socket
+```import socket
 s=socket.socket()
-s.bind(('localhost',8000))
+s.bind(('localhost',8090))
 s.listen(5)
-c,addr=s.accept()
-size=int(input("Enter number of frames to send : "))
-l=list(range(size))
-s=int(input("Enter Window Size : "))
-st=0
-i=0
+c,addr=s.accept()           
 while True:
- while(i<len(l)):
- st+=s
- c.send(str(l[i:st]).encode())
- ack=c.recv(1024).decode()
- if ack:
- print(ack)
- i+=s
-
-```
-## SERVER:
-```
+    i=input("Enter a data: ")
+    c.send(i.encode())
+    ack=c.recv(1024).decode()
+    if ack:
+        print(ack)
+        continue
+    else:
+        c.close()
+        break
+Server:
 import socket
 s=socket.socket()
-s.connect(('localhost',8000))
-while True: 
- print(s.recv(1024).decode())
- s.send("acknowledgement recived from the server".encode())
+s.connect(('localhost',8090))
+while True:
+    print(s.recv(1024).decode())
+    s.send("Acknowledgement Recived".encode())
+
+
 
 ## OUTPUT:
-## CLIENT:
 
-![image](https://github.com/user-attachments/assets/ec0d509d-4425-441e-b12e-9c5af7556dee)
+![image](https://github.com/user-attachments/assets/56d56ca3-add8-495b-8dcc-2b9b3f99295c)
 
-SERVER:
-![image](https://github.com/user-attachments/assets/589fa7e0-ba28-4121-bace-c1b466bd9dda)
-
-
-
-
-## Result:
-
+Result:
 Thus the study on Client Server Chat Applications has been performed
+
 
